@@ -9,7 +9,7 @@ weight: 20
 
 Here is a `Mermaid` diagram
 
-```m
+```c
 classDiagram
     Device <|.. Radio
     Device <|.. Tv
@@ -90,5 +90,16 @@ public class Main {
         tvRemote.mute();
     }
 }
-
 ```
+
+In the Bridge design pattern, the "bridge" is the link between the abstraction and its implementation. In this case, the RemoteControl class (and its subclass AdvancedRemoteControl) represents the abstraction, and the Device interface represents the implementation.
+
+The "bridge" is the mechanism that allows the RemoteControl to control a Device without knowing the specifics of what kind of Device it is controlling. This is achieved through the Device interface, which provides a consistent way for RemoteControl to interact with different kinds of Device objects (like Radio or Tv).
+
+So, in this context, the Device interface acts as the "bridge" between the RemoteControl abstraction and its implementation (Radio or Tv). The Device interface allows the RemoteControl to work with different Device implementations in a way that is decoupled from the specifics of those implementations. This is the essence of the Bridge design pattern.
+
+## The diagram
+
+> The Diagram is in `.SVG` format, it _MAY_ get oversized
+> ![bridge](https://raw.githubusercontent.com/benjipeng/assets/main/rc/book/designpatterns/bridge-pattern.svg)
+>

@@ -9,11 +9,11 @@ weight: 20
 
 Design patterns are categorized into three types:
 
-- `Creational Patterns:` Try to *create* objects in a manner suitable to the situation. _{deal with object creation mechanism}_
-- `Structural Patterns:` Compose interfaces and define ways to compose objects to gain new functionality. _{class / object composition}_
+- `Creational Patterns:` Try to *create* objects in a manner suitable to the situation. *{deal with object creation mechanism}*
+- `Structural Patterns:` Compose interfaces and define ways to compose objects to gain new functionality. *{class / object composition}*
 - `Behavioral Patterns:` Algorithm and assignment of responsibilities between objects.
 
-### A note on Java
+## A note on Java
 
 > In Java, you can **only** have one public class per `.java` file, and the file name must match the name of the public class. However, you can have multiple non-public classes in the same `.java` file.
 
@@ -34,7 +34,7 @@ src/
 |   |   |   |   |   |-- Main.java
 ```
 
-To compile and run the `Main` class from the command line, you would first navigate to the `src` directory, then use the `javac` command to compile the `.java `files into bytecode (`.class` files), and then use the java command to run the `Main` class. Here's how you can do it:
+To compile and run the `Main` class from the command line, you would first navigate to the `src` directory, then use the `javac` command to compile the `.java` files into bytecode (`.class` files), and then use the java command to run the `Main` class. Here's how you can do it:
 
 ```bash
 # Navigate to the src directory
@@ -46,4 +46,3 @@ javac main/java/com/example/bridge/*.java
 # Run the Main class
 java main.java.com.example.bridge.Main
 ```
-
