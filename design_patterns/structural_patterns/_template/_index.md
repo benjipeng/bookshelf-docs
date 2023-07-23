@@ -9,15 +9,13 @@ weight: 20
 
 ## Component
 
-### Originator / Memento / Caretaker
 
 
 ### Relationship
 
 
-### Diagram
 
-#### Mermaid Code
+### Diagram
 
 
 ![Factory-Method-Pattern](https://raw.githubusercontent.com/benjipeng/assets/main/rc/book/designpatterns/memento-pattern.svg)
@@ -26,4 +24,10 @@ weight: 20
 
 
 
+
 ## Learn More
+
+
+
+### Mermaid Code
+
