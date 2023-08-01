@@ -3,46 +3,119 @@ bookCollapseSection: true
 weight: 20
 ---
 
-# An overview of Design Patterns in OOP
+# Structural Design Patterns
 
-> Design patterns are **typical** solutions to common problems in software design. Each pattern is like a blueprint that you can customize to solve a particular design problem in your code. They are descriptions or templates for how to solve a problem that can be used in many different situations.
+> Structural Design Patterns are concerned with how classes and objectes can be composed
 
-Design patterns are categorized into three types:
+## Python Examples
 
-- `Creational Patterns:` Try to *create* objects in a manner suitable to the situation. *{deal with object creation mechanism}*
-- `Structural Patterns:` Compose interfaces and define ways to compose objects to gain new functionality. *{class / object composition}*
-- `Behavioral Patterns:` Algorithm and assignment of responsibilities between objects.
+### Adapter Pattern
 
-## A note on Java
+> allows the interface of an existing class to be used another interface.
 
-> In Java, you can **only** have one public class per `.java` file, and the file name must match the name of the public class. However, you can have multiple non-public classes in the same `.java` file.
-
-For the Bridge design pattern example, you would typically have a separate .java file for each class or interface. Here's how you might organize your files:
-
-```lua
-src/
-|-- main/
-|   |-- java/
-|   |   |-- com/
-|   |   |   |-- example/
-|   |   |   |   |-- bridge/
-|   |   |   |   |   |-- Device.java
-|   |   |   |   |   |-- Radio.java
-|   |   |   |   |   |-- Tv.java
-|   |   |   |   |   |-- RemoteControl.java
-|   |   |   |   |   |-- AdvancedRemoteControl.java
-|   |   |   |   |   |-- Main.java
+```python
+class OldClass:
+	def old_method(self):
+		return "Old Method"
+class Adapter:
+	def __init__(self, obj):
+		self.obj = obj
+	def new_method(self):
+		return f"{self.obj.old_method()} plus Adapter"
+old_class = OldClass()
+adapter = Adapter(old_class)
+print(adapter.new_method())
 ```
 
-To compile and run the `Main` class from the command line, you would first navigate to the `src` directory, then use the `javac` command to compile the `.java` files into bytecode (`.class` files), and then use the java command to run the `Main` class. Here's how you can do it:
+### Decorator Pattern
 
-```bash
-# Navigate to the src directory
-cd src
+> Allows behaviors to be added to an individual object
 
-# Compile the .java files
-javac main/java/com/example/bridge/*.java
-
-# Run the Main class
-java main.java.com.example.bridge.Main
+```python
+class Component:
+	def operation(self):
+		pass
+class ConcreteComponent(Component):
+	def operation(self):
+		return "ConcreteComponent"
+class Decorator(Component):
+	def __init__(self, component):
+		self._component = component
+	def operation(self):
+		return self._component.operation()
+class ConcreteDecoratorA(Decorator):
+	def operation(self):
+		return f"ConcreteDecoratorA({self._component.operation()})"
+simple = ConcreteComponent()
+decorator = ConcreteDecoratorA(simple)
+print(decorator.operation())
 ```
+
+### Composite Pattern 
+
+> Composes objects into tree structures to represent part-whole hierachies.
+
+```python
+class Component:
+	def operation(self):
+		pass
+class Leaf(Component):
+	def operation(self):
+		return "Leaf"
+class Composite(Component):
+	def __init__(self):
+		self._children = []
+	def add(self, component):
+		self._children.append(component)
+	def operation(self):
+		results = []
+		for child in self._children:
+			results.append(child.operation())
+		return f"Branch({'+'.join(results)})"
+simple = Leaf()
+tree = Composite()
+tree.add(simple)
+print(tree.operation())  # Outputs: Branch(Leaf)
+```
+
+### Proxy Pattern
+
+> Provides a surrogate or placeholder for another object to control access to it.
+
+```python
+class RealImage:
+	def __init__(self, filename):
+		self.filename = filename
+	def load_image_from_disk(self):
+		print(f"Loading {self.filename}")
+	def display_image(self):
+		print(f"Displaying {self.filename}")
+class ProxyImage:
+	def __init__(self, filename):
+		self.filename = filename
+		self.real_image = None
+	def display_image(self):
+		if self.real_image is None:
+			self.real_image = RealImage(self.filename)
+		self.real_image.display_image()
+proxy_image = ProxyImage("test_image.jpg")
+proxy_image.display_image()
+proxy_image.display_image()
+```
+
+### Bridge Pattern
+
+> This pattern decouples an abstraction from its implementation so that the two can vary independently.
+
+### Facade Pattern
+
+> This pattern provides a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
+class Subsystem1:
+	def operation1(self):
+		return "Subsystem1: Ready!\n"
+
+
+### Flyweight Pattern
+
+> This pattern uses sharing to support large numbers of fine-grained objects efficiently. A flyweight is a shared object that can be used in multiple contexts simultaneously. The flyweight acts as an independent object in each context — it's indistinguishable from an instance of the object that's not shared.
+		
